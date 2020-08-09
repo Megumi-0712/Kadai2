@@ -1,5 +1,8 @@
 class Book < ApplicationRecord
-	has_many :user
+	devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
+         has_many :user
 	#バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
 	#presence trueは空欄の場合を意味する。
 	validates :title, presence: true
