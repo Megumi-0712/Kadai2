@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:update]
 
@@ -12,6 +12,21 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+        @user = User.create(user_params)
+        if @user.save
+            flash[:notice] = "Welcome! You have signed up successfully."
+            redirect_to user_path(@user.id)
+        else
+            flash.now[:error]
+            render :new
+        end
   end
 
   def edit
