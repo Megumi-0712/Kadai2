@@ -42,3 +42,12 @@
 
 	</div>
 </div>
+
+<ul class="inline-meta">
+  <li>By
+    <%= @user.name %>
+  </li>
+  <li>
+    <%= link_to "#{book.post_comments.count} コメント", book_path(book.id) %>
+  </li>
+</ul>
